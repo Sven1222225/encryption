@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="DE-de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://sven1222225.github.io/js/app.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <title>Verschlüsselung</title>
+</head>
+<body class="flex flex-col items-center">
+    <h1 class="text-5xl mt-5">Verschlüsselung</h1>
+
+    <div class="mt-8 p-4 bg-lime-500 rounded-lg">
+        <h2 class="text-3xl">Input</h2>
+        <textarea class="w-full h-32" name="input" id="input"></textarea>
+
+        <h2 class="text-3xl">Verschlüsselung</h2>
+        <select name="encryption" id="encryption">
+            <option value="1">op1</option>
+            <option value="2">op2</option>
+            <option value="3">op3</option>
+        </select>
+
+        <button class="btn-crypt block bg-teal-400 rounded-xl p-2">Verschlüsseln</button>
+        <button class="btn-crypt block bg-teal-400 rounded-xl p-2 hidden">Entschlüsseln</button>
+
+        <h2 class="text-3xl">Output</h2>
+        <textarea class="w-full h-32" name="output" id="output"></textarea>
+    </div>
+</body>
+</html>
