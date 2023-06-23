@@ -8,7 +8,7 @@ const submitElement = document.getElementById('button');
 const cipherElement = document.getElementById('cipher');
 
 // Variable
-let useDecrypt = false;
+let isDecrypt = false;
 
 // Event Listeners
 
@@ -16,16 +16,16 @@ let useDecrypt = false;
 checkboxElement.addEventListener('click', function() {
   if (checkboxElement.checked) {
     submitElement.innerHTML = "Entschlüsseln";
-    useDecrypt = true;
+    isDecrypt = true;
   } else {
     submitElement.innerHTML = "Verschlüsseln";
-    useDecrypt = false;
+    isDecrypt = false;
   }
 });
 
 // Submit Listener
 submitElement.addEventListener('click', function() {
-  if (useDecrypt) {
+  if (isDecrypt) {
     decrypt();
   } else {
     encrypt();
@@ -41,12 +41,15 @@ function encrypt() {
   let result = "";
   let method = selectorElement.value;
   let text = inputElement.value;
+  let cipher = cipherElement.value;
 
   switch (method) {
     case "caesar":
       result = caesarEncrypt(text);
       break;
-    // Add more cases here
+    case "xor":
+      result = XORencode(text, cipher);
+      break;
 
     default:
       result = "Error";
@@ -61,12 +64,15 @@ function decrypt() {
   let result = "";
   let method = selectorElement.value;
   let text = inputElement.value;
+  let cipher = cipherElement.value;
 
   switch (method) {
     case "caesar":
       result = caesarDecrypt(text);
       break;
-    // Add more cases here
+    case "xor":
+      result = XORencode(text, cipher);
+      break;
 
     default:
       result = "Error";
@@ -114,19 +120,13 @@ function caesarDecrypt(text) {
   }
 }
 
-function encodeXOR(input, xor){
-    return input.split('').map(function(e){
-        return String.fromCharCode(e.charCodeAt(0) ^ xor.charCodeAt(0))
-    }).join('');
-}
-
 /**
  * xor should be one character long
  * @param {String} input 
  * @param {String} xor 
  * @returns {String}
  */
-function encodeXOR(input, xor){
+function XORencode(input, xor){
     return input.split('').map(function(e){
         return String.fromCharCode(e.charCodeAt(0) ^ xor.charCodeAt(0))
     }).join('');
