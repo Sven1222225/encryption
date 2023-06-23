@@ -45,7 +45,7 @@ function encrypt() {
 
   switch (method) {
     case "caesar":
-      result = caesarEncrypt(text);
+      result = caesarEncrypt(text, cipher);
       break;
     case "xor":
       result = XORencode(text, cipher);
@@ -68,7 +68,7 @@ function decrypt() {
 
   switch (method) {
     case "caesar":
-      result = caesarDecrypt(text);
+      result = caesarDecrypt(text, cipher);
       break;
     case "xor":
       result = XORencode(text, cipher);
@@ -83,8 +83,8 @@ function decrypt() {
 }
 
 // Caesar Encryption
-function caesarEncrypt(input) {
-  let shift = 3;
+function caesarEncrypt(input, cipher) {
+  let shift = parseInt(cipher);
   let output = "";
 
   for (let i = 0; i < input.length; i++) {
@@ -103,8 +103,8 @@ function caesarEncrypt(input) {
 }
 
 // Caesar Decryption
-function caesarDecrypt(text) {
-  let shift = 3;
+function caesarDecrypt(text, cipher) {
+  let shift = parseInt(cipher);
   let result = "";
 
   for (let i = 0; i < text.length; i++) {
@@ -118,6 +118,8 @@ function caesarDecrypt(text) {
       result += text.charAt(i);
     }
   }
+
+  return result;
 }
 
 /**
