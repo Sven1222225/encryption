@@ -15,28 +15,61 @@
         <h1 id="title" class="text-5xl mt-5">Verschlüsselung</h1>
 
         <div class="mt-8 p-4 bg-lime-500 rounded-lg">
-            <input id="encDec" type="checkbox">
-            <label id="encDecLabel" for="encDec">Entschlüsseln</label>
 
-            <h2 class="text-3xl">Input</h2>
-            <textarea id="input" class="w-full h-32" name="input"></textarea>
+            <div class="flex gap-2 mb-4">
+                <span id="nav_xor" data-state="selected" class="data-[state=unselected]:bg-teal-400 bg-teal-600 bg-opacity-80 rounded-lg py-2 px-4 cursor-pointer shadow-lg border-solid border-gray-500 border-opacity-50 border-2 data-[state=unselected]:hover:border-opacity-70 data-[state=unselected]:hover:bg-opacity-100">Caesar</span>
+                <span id="nav_caesar" data-state="unselected" class="data-[state=unselected]:bg-teal-400 bg-teal-600 bg-opacity-80 rounded-lg py-2 px-4 cursor-pointer shadow-lg border-solid border-gray-500 border-opacity-50 border-2 data-[state=unselected]:hover:border-opacity-70 data-[state=unselected]:hover:bg-opacity-100">XOR</span>
+            </div>
 
-            <h2 class="text-3xl">Einstellungen</h2>
-
-            <label for="cipher">Cipher
-                <input id="cipher" name="cipher" type="text">
-            </label>
-
-            <select id="methodSelector" name="encryption" >
-                <option value="caesar">Ceasar</option>
-                <option value="xor">XOR</option>
-                <!-- More options... -->
-            </select>
-
-            <button id="button" class="btn-crypt block bg-teal-400 rounded-xl p-2">Verschlüsseln</button>
-
-            <h2 class="text-3xl">Output</h2>
-            <textarea id="output" class="w-full h-32" name="output"></textarea>
+            <!------------------------------------- CAESAR ------------------------------------->
+            <div id="section_caesar" class="">
+                <input id="encDec" type="checkbox">
+                <label id="encDecLabel" for="encDec">Entschlüsseln</label>
+    
+                <h2 class="text-3xl">Input</h2>
+                <textarea id="input" class="w-full h-32" name="input"></textarea>
+    
+                <h2 class="text-3xl">Einstellungen</h2>
+    
+                <label for="cipher">Cipher
+                    <input id="cipher" name="cipher" type="text">
+                </label>
+    
+                <select id="methodSelector" name="encryption" >
+                    <option value="caesar">Caesar</option>
+                    <option value="xor">XOR</option>
+                </select>
+    
+                <button id="button" class="btn-crypt block bg-teal-400 rounded-xl p-2">Verschlüsseln</button>
+    
+                <h2 class="text-3xl">Output</h2>
+                <textarea id="output" class="w-full h-32" name="output"></textarea>
+            </div>
+            <!------------------------------------- XOR ------------------------------------->
+            <div id="section_xor" class="hidden">
+                <input id="encDec" type="checkbox">
+                <label id="encDecLabel" for="encDec">Entschlüsseln</label>
+    
+                <h2 class="text-3xl">Input</h2>
+                <textarea id="input" class="w-full h-32" name="input"></textarea>
+    
+                <h2 class="text-3xl">Einstellungen</h2>
+    
+                <label for="cipher">Cipher
+                    <input id="cipher" name="cipher" type="text">
+                </label>
+    
+                <select id="methodSelector" name="encryption" >
+                    <option value="caesar">Ceasar</option>
+                    <option value="xor">XOR</option>
+                </select>
+    
+                <button id="button" class="btn-crypt block bg-teal-400 rounded-xl p-2">Verschlüsseln</button>
+    
+                <h2 class="text-3xl">Output</h2>
+                <textarea id="output" class="w-full h-32" name="output"></textarea>
+            </div>
+            <!------------------------------------- $$$ ------------------------------------->
         </div>
     </body>
 </html>
