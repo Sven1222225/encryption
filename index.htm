@@ -22,31 +22,36 @@
             </div>
 
             <!------------------------------------- CAESAR ------------------------------------->
-            <div id="section_caesar" class="">
-                <input id="encDec" type="checkbox">
-                <label id="encDecLabel" for="encDec">Entschlüsseln</label>
-    
-                <h2 class="text-3xl">Input</h2>
-                <textarea id="input" class="w-full h-32" name="input"></textarea>
-    
-                <h2 class="text-3xl">Einstellungen</h2>
-    
-                <label for="cipher">Cipher
-                    <input id="cipher" name="cipher" type="text">
-                </label>
-    
-                <select id="methodSelector" name="encryption" >
-                    <option value="caesar">Caesar</option>
-                    <option value="xor">XOR</option>
-                </select>
-    
-                <button id="button" class="btn-crypt block bg-teal-400 rounded-xl p-2">Verschlüsseln</button>
-    
-                <h2 class="text-3xl">Output</h2>
-                <textarea id="output" class="w-full h-32" name="output"></textarea>
+            <div id="section_caesar" class="flex gap-8">
+                <div>
+                    <h2 class="text-3xl">Klartext</h2>
+                    <textarea id="caesar_input_encrypt" class="w-full h-32" name="input"></textarea>
+
+                    <label for="cipher">Cipher
+                        <input id="caesar_cipher_encrypt" name="cipher" type="text">
+                    </label>
+
+                    <button id="caesar_button_encrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2">Verschlüsseln</button>
+
+                    <h2 class="text-3xl">Verschlüsselter Text</h2>
+                    <textarea id="caesar_output_encrypt" class="w-full h-32" name="input" readonly></textarea>
+                </div>
+                <div>
+                    <h2 class="text-3xl">Verschlüsselter Text</h2>
+                    <textarea id="caesar_input_decrypt" class="w-full h-32" name="input"></textarea>
+
+                    <label for="cipher">Cipher
+                        <input id="caesar_cipher_decrypt" name="cipher" type="text">
+                    </label>
+
+                    <button id="caesar_button_decrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2">Entschlüsseln</button>
+
+                    <h2 class="text-3xl">Klartext</h2>
+                    <textarea id="caesar_output_decrypt" class="w-full h-32" name="input" readonly></textarea>
+                </div>
             </div>
             <!------------------------------------- XOR ------------------------------------->
-            <div id="section_xor" class="hidden">
+            <div id="section_xor" class="flex gap-8 hidden">
                 <input id="encDec" type="checkbox">
                 <label id="encDecLabel" for="encDec">Entschlüsseln</label>
     
