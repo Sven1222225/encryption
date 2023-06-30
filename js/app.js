@@ -4,6 +4,8 @@ const navXor = document.getElementById('nav_xor').addEventListener('click', hand
 
 const caesarButtonEncrypt = document.getElementById('caesar_button_encrypt').addEventListener('click', caesarEncrypt);
 const caesarButtonDecrypt = document.getElementById('caesar_button_decrypt').addEventListener('click', caesarDecrypt);
+const xorButtonEncrypt = document.getElementById('xor_button_encrypt').addEventListener('click', xorEncrypt);
+const xorButtonDecrypt = document.getElementById('xor_button_decrypt').addEventListener('click', xorDecrypt);
 
 //Handle Navigation
 function handleNav() {
@@ -76,14 +78,24 @@ function caesarDecrypt() {
     outputElement.value = result;
 }
 
-/**
- * xor should be one character long
- * @param {String} input 
- * @param {String} xor 
- * @returns {String}
- */
-function XORencode(input, xor) {
-    return input.split('').map(function (e) {
-        return String.fromCharCode(e.charCodeAt(0) ^ xor.charCodeAt(0))
+//xor Encrypt
+function xorEncrypt() {
+    const input = document.getElementById('xor_input_encrypt').value;
+    const outputElement = document.getElementById('xor_output_encrypt');
+    const cipher = document.getElementById('xor_cipher_encrypt').value;
+    
+    outputElement.value = input.split('').map(function (e) {
+        return String.fromCharCode(e.charCodeAt(0) ^ cipher.charCodeAt(0))
+    }).join('');
+}
+
+//xor Decrypt
+function xorDecrypt() {
+    const input = document.getElementById('xor_input_decrypt').value;
+    const outputElement = document.getElementById('xor_output_decrypt');
+    const cipher = document.getElementById('xor_cipher_decrypt').value;
+
+    outputElement.value = input.split('').map(function (e) {
+        return String.fromCharCode(e.charCodeAt(0) ^ cipher.charCodeAt(0))
     }).join('');
 }
