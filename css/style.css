@@ -17,9 +17,5 @@
 }
 
 .method_item.active {
-    background-color: #a2a2a2;
-}
-
-.method_item.active:hover {
-    background-color: #a2a2a2;
+    background-color: rgb(20 184 166);
 }
