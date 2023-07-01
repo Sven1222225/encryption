@@ -7,104 +7,112 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="js/app.js" defer></script>
 
+        <link rel="stylesheet" href="css/style.css">
+
         <title>Verschlüsselung</title>
 
     </head>
-    <body class="bg-[url(img/matrix.webp)]">
+    <body class="Background">
 
         <div class="mt-8 p-4 flex flex-col items-center shadow-lg">
             
-            <div class="mb-4 p-8 bg-lime-500 rounded-xl border-solid border-lime-700 border-4">
-                <h1 id="title" class="text-5xl mb-5">Verschlüsselung</h1>
-    
-                <div class="flex gap-2 justify-center">    
-                    <span id="nav_caesar" data-state="selected" class="data-[state=selected]:bg-teal-400 bg-teal-600 bg-opacity-80 rounded-lg py-2 px-4 cursor-pointer shadow-lg border-solid border-gray-500 border-opacity-50 border-2 data-[state=selected]:hover:border-opacity-70 data-[state=selected]:hover:bg-opacity-100 select-none">Caesar</span>
-                    <span id="nav_xor" data-state="unselected" class="data-[state=selected]:bg-teal-400 bg-teal-600 bg-opacity-80 rounded-lg py-2 px-4 cursor-pointer shadow-lg border-solid border-gray-500 border-opacity-50 border-2 data-[state=selected]:hover:border-opacity-70 data-[state=selected]:hover:bg-opacity-100 select-none">XOR</span>
-                    <span id="nav_atbash" data-state="unselected" class="data-[state=selected]:bg-teal-400 bg-teal-600 bg-opacity-80 rounded-lg py-2 px-4 cursor-pointer shadow-lg border-solid border-gray-500 border-opacity-50 border-2 data-[state=selected]:hover:border-opacity-70 data-[state=selected]:hover:bg-opacity-100 select-none">Atbash</span>
-                    <span id="nav_new" data-state="unselected" class="data-[state=selected]:bg-teal-400 bg-teal-600 bg-opacity-80 rounded-lg py-2 px-4 cursor-pointer shadow-lg border-solid border-gray-500 border-opacity-50 border-2 data-[state=selected]:hover:border-opacity-70 data-[state=selected]:hover:bg-opacity-100 select-none">New</span>
-                </div>
+            <div class="mb-4 p-8 bg-lime-500 rounded-xl border-solid border-lime-700 border-4 flex flex-col items-center">
+                <h1 class="text-5xl mb-5">Verschlüsselung</h1>
+                
+                <label for="method">Verschlüsselungsmethode</label>
+                <select id="method" class="">
+                    <option value="none" selected disabled>--Bitte wählen--</option>
+                    <option value="caesar">Caesar</option>
+                    <option value="xor">XOR</option>
+                    <option value="atbash">Atbash</option>
+                </select>
             </div>
 
-            <!------------------------------------- CAESAR ------------------------------------->
-            <div id="section_caesar" class="flex gap-8 flex-wrap justify-center shadow-lg">
-                <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500 ">
-                    <h2 class="text-3xl">Klartext</h2>
-                    <textarea id="caesar_input_encrypt" class="w-full h-32" name="input"></textarea>
-            
-                    <label for="caesar_cipher_encrypt">Cipher
-                        <input id="caesar_cipher_encrypt" name="cipher" type="number" min="0" max="25" value="0">
-                    </label>
-            
-                    <button id="caesar_button_encrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Verschlüsseln</button>
-            
-                    <h2 class="text-3xl">Verschlüsselter Text</h2>
-                    <textarea id="caesar_output_encrypt" class="w-full h-32" name="input" readonly></textarea>
+            <div class="flex gap-8 flex-wrap justify-center">
+
+                <!-- Encrypt -->
+                <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500">
+
+                    <div> <!-- Clear text -->
+                        <h2 class="text-3xl">Klartext</h2>
+                        <textarea id="input_encrypt" class="w-full h-32"></textarea>
+                    </div>
+
+                    <div> 
+                        <div> <!-- Parameters -->
+                            
+                            <!-- Caesar -->
+                            <div name="caesar" class="hidden">
+                                <h3 class="text-2xl">Parameter:</h3>
+                                <label for="caesar_shift_encrypt">Shift</label>
+                                <input id="caesar_shift_encrypt" type="number" min="0" max="26" value="0">
+                            </div>
+
+                            <!-- XOR -->
+                            <div name="xor" class="hidden">
+                                <h3 class="text-2xl">Parameter:</h3>
+                                <label for="xor_unnamed_encrypt">Unnamed</label>
+                                <input id="xor_unnamed_encrypt" type="text">
+                            </div>
+
+                            <!-- Atbash -->
+                            <div name="atbash" class="hidden">
+                                <!-- Nothing ¯\_(ツ)_/¯ -->
+                            </div>
+
+                        </div>
+                        <button id="encrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Vertschlüsseln</button>
+                    </div>
+
+                    <div> <!-- Encrypted -->
+                        <h2 class="text-3xl">Verschlüsselter Text</h2>
+                        <textarea id="output_encrypt" class="w-full h-32" readonly></textarea>
+                    </div>
+
                 </div>
-                <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500 ">
-                    <h2 class="text-3xl">Verschlüsselter Text</h2>
-                    <textarea id="caesar_input_decrypt" class="w-full h-32" name="input"></textarea>
-            
-                    <label for="caesar_cipher_decrypt">Cipher
-                        <input id="caesar_cipher_decrypt" name="cipher" type="number" min="0" max="25" value="0">
-                    </label>
-            
-                    <button id="caesar_button_decrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Entschlüsseln</button>
-            
-                    <h2 class="text-3xl">Klartext</h2>
-                    <textarea id="caesar_output_decrypt" class="w-full h-32" name="input" readonly></textarea>
+                
+                <!-- Decrypt -->
+                <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500">
+                        
+                    <div> <!-- Encrypted -->
+                        <h2 class="text-3xl">Verschlüsselter Text</h2>
+                        <textarea id="input_decrypt" class="w-full h-32"></textarea>
+                    </div>
+
+                    <div> 
+                        <div> <!-- Parameters -->
+                            
+                            <!-- Caesar -->
+                            <div name="caesar" class="hidden">
+                                <h3 class="text-2xl">Parameter:</h3>
+                                <label for="caesar_shift_decrypt">Shift</label>
+                                <input id="caesar_shift_decrypt" type="number" min="0" max="26" value="0">
+                            </div>
+
+                            <!-- XOR -->
+                            <div name="xor" class="hidden">
+                                <h3 class="text-2xl">Parameter:</h3>
+                                <label for="xor_unnamed_decrypt">Unnamed</label>
+                                <input id="xor_unnamed_decrypt" type="text">
+                            </div>
+
+                            <!-- Atbash -->
+                            <div name="atbash" class="hidden">
+                                <!-- Nothing ¯\_(ツ)_/¯ -->
+                            </div>
+
+                        </div>
+                        <button id="decrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Entschlüsseln</button>
+                    </div>
+
+                    <div> <!-- Clear text -->
+                        <h2 class="text-3xl">Klartext</h2>
+                        <textarea id="output_decrypt" class="w-full h-32" readonly></textarea>
+                    </div>
+
                 </div>
-            </div>            
-            <!------------------------------------- XOR ------------------------------------->
-            <div id="section_xor" class="flex gap-8 flex-wrap justify-center shadow-lg hidden">
-                <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500 ">
-                    <h2 class="text-3xl">Klartext</h2>
-                    <textarea id="xor_input_encrypt" class="w-full h-32" name="input"></textarea>
 
-                    <label for="xor_cipher_encrypt">Cipher
-                        <input id="xor_cipher_encrypt" name="cipher" type="text">
-                    </label>
-
-                    <button id="xor_button_encrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Verschlüsseln</button>
-
-                    <h2 class="text-3xl">Verschlüsselter Text</h2>
-                    <textarea id="xor_output_encrypt" class="w-full h-32" name="input" readonly></textarea>
-                </div>
-                <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500 ">
-                    <h2 class="text-3xl">Verschlüsselter Text</h2>
-                    <textarea id="xor_input_decrypt" class="w-full h-32" name="input"></textarea>
-
-                    <label for="xor_cipher_decrypt">Cipher
-                        <input id="xor_cipher_decrypt" name="cipher" type="text">
-                    </label>
-
-                    <button id="xor_button_decrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Entschlüsseln</button>
-
-                    <h2 class="text-3xl">Klartext</h2>
-                    <textarea id="xor_output_decrypt" class="w-full h-32" name="input" readonly></textarea>
-                </div>
             </div>
-            <!------------------------------------- Atbash ------------------------------------->
-            <div id="section_atbash" class="flex gap-8 flex-wrap justify-center shadow-lg hidden">
-                <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500 ">
-                    <h2 class="text-3xl">Klartext</h2>
-                    <textarea id="atbash_input_encrypt" class="w-full h-32" name="input"></textarea>
-
-                    <button id="atbash_button_encrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Verschlüsseln</button>
-
-                    <h2 class="text-3xl">Verschlüsselter Text</h2>
-                    <textarea id="atbash_output_encrypt" class="w-full h-32" name="input" readonly></textarea>
-                </div>
-                <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500 ">
-                    <h2 class="text-3xl">Verschlüsselter Text</h2>
-                    <textarea id="atbash_input_decrypt" class="w-full h-32" name="input"></textarea>
-
-                    <button id="atbash_button_decrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Entschlüsseln</button>
-
-                    <h2 class="text-3xl">Klartext</h2>
-                    <textarea id="atbash_output_decrypt" class="w-full h-32" name="input" readonly></textarea>
-                </div>
-            </div>
-            <!------------------------------------- $$$ ------------------------------------->
         </div>
     </body>
 </html>

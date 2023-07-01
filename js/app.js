@@ -1,156 +1,232 @@
-// Element
-const navCaesar = document.getElementById('nav_caesar').addEventListener('click', handleNav);
-const navXor = document.getElementById('nav_xor').addEventListener('click', handleNav);
-const navAtbash = document.getElementById('nav_atbash').addEventListener('click', handleNav);
+//Elements
+const methodSelect = document.getElementById('method');
+const inputEncrypt = document.getElementById('input_encrypt');
+const inputDecrypt = document.getElementById('input_decrypt');
+const outputEncrypt = document.getElementById('output_encrypt');
+const outputDecrypt = document.getElementById('output_decrypt');
+const encryptButton = document.getElementById('encrypt');
+const decryptButton = document.getElementById('decrypt');
 
-const caesarButtonEncrypt = document.getElementById('caesar_button_encrypt').addEventListener('click', caesarEncrypt);
-const caesarButtonDecrypt = document.getElementById('caesar_button_decrypt').addEventListener('click', caesarDecrypt);
-const xorButtonEncrypt = document.getElementById('xor_button_encrypt').addEventListener('click', xorEncrypt);
-const xorButtonDecrypt = document.getElementById('xor_button_decrypt').addEventListener('click', xorDecrypt);
-const atbashButtonEncrypt = document.getElementById('atbash_button_encrypt').addEventListener('click', atbashEncrypt);
-const atbashButtonDecrypt = document.getElementById('atbash_button_decrypt').addEventListener('click', atbashDecrypt);
+//Event Listeners
+methodSelect.addEventListener('change', handleMethod);
+encryptButton.addEventListener('click', handleEncrypt);
+decryptButton.addEventListener('click', handleDecrypt);
 
-//Handle Navigation
-function handleNav() {
-    const navs = document.querySelectorAll('[id^="nav_"]');
-    const sections = document.querySelectorAll('[id^="section_"]');
+//Handle Methods
+function handleMethod() {
+    const selectedMethod = methodSelect.value;
 
-    navs.forEach(function(nav){
-        nav.dataset.state = 'unselected';
+    // Get all Elements with a 'name' attribute
+    const methodElements = document.querySelectorAll('[name]');
+
+    // Go through each element
+    methodElements.forEach(function(element) {
+        // if the element is associated with the selected method make it visible
+        if (element.getAttribute('name') === selectedMethod) {
+            element.classList.remove('hidden');
+        }
+        //if element is not associated with the selected method hide it
+        else {
+            element.classList.add('hidden');
+        }
     });
+}
 
-    this.dataset.state = 'selected';
+//Handle Encrypt
+function handleEncrypt() {
+    //get Values
+    const selectedMethod = methodSelect.value;
+    const inputText = document.getElementById('input_encrypt').value;
+    const outputField = document.getElementById('output_encrypt');
 
-    sections.forEach(function(section){
-        section.classList.add('hidden');
-    });
+    let outputText = "";
 
-    const navName = this.id.replace('nav', 'section');
+    //check which method is selected and call the corresponding function
+    switch (selectedMethod) {
     
-    selectedSection = document.getElementById(navName);
-    selectedSection.classList.remove('hidden');
+        //Caesar
+        case 'caesar':
+            outputText = caesarEncrypt(inputText);
+            break;
+
+        //Xor
+        case 'xor':
+            outputText = xorEncrypt(inputText);
+            break;
+
+        //Atbash
+        case 'atbash':
+            outputText = atbashEncrypt(inputText);
+            break;
+        
+        default:
+            outputText = inputText;
+            break;
+    }
+
+    //set output
+    outputField.value = outputText;
+}
+
+//Handle Decrypt
+function handleDecrypt() {
+    //get Values
+    const selectedMethod = methodSelect.value;
+    const inputText = document.getElementById('input_decrypt').value;
+    const outputField = document.getElementById('output_decrypt');
+
+    let outputText = "";
+
+    //check which method is selected and call the corresponding function
+    switch (selectedMethod) {
+    
+        //Caesar
+        case 'caesar':
+            outputText = caesarDecrypt(inputText);
+            break;
+
+        //Xor
+        case 'xor':
+            outputText = xorDecrypt(inputText);
+            break;
+
+        //Atbash
+        case 'atbash':
+            outputText = atbashDecrypt(inputText);
+            break;
+        
+        default:
+            outputText = inputText;
+            break;
+    }
+
+    //set output
+    outputField.value = outputText;
 }
 
 // Caesar Encryption
-function caesarEncrypt() {
-    const inputElement = document.getElementById('caesar_input_encrypt');
-    const outputElement = document.getElementById('caesar_output_encrypt');
-    const cipherElement = document.getElementById('caesar_cipher_encrypt');
+function caesarEncrypt(inputText) {
 
-    let shift = parseInt(cipherElement.value);
-    let input = inputElement.value;
-    let output = "";
+    //get Parameter
+    const shift_parameter = parseInt(document.getElementById('caesar_shift_encrypt').value);
 
-    for (let i = 0; i < input.length; i++) {
-        let c = input.charCodeAt(i);
+    //initialize output
+    let outputText = "";
+
+    for (let i = 0; i < inputText.length; i++) {
+        let c = inputText.charCodeAt(i);
 
         if (c >= 65 && c <= 90) {
-            output += String.fromCharCode((c - 65 + shift) % 26 + 65);
+            outputText += String.fromCharCode((c - 65 + shift_parameter) % 26 + 65);
         } else if (c >= 97 && c <= 122) {
-            output += String.fromCharCode((c - 97 + shift) % 26 + 97);
+            outputText += String.fromCharCode((c - 97 + shift_parameter) % 26 + 97);
         } else {
-            output += input.charAt(i);
+            outputText += inputText.charAt(i);
         }
     }
 
-    outputElement.value = output;
+    return outputText;
 }
 
 // Caesar Decryption
-function caesarDecrypt() {
-    const inputElement = document.getElementById('caesar_input_decrypt');
-    const outputElement = document.getElementById('caesar_output_decrypt');
-    const cipherElement = document.getElementById('caesar_cipher_decrypt');
+function caesarDecrypt(inputText) {
 
-    let shift = parseInt(cipherElement.value);
-    let text = inputElement.value;
-    let result = "";
+    //get Parameter
+    const shift_parameter = parseInt(document.getElementById('caesar_shift_decrypt').value);
 
-    for (let i = 0; i < text.length; i++) {
-        let c = text.charCodeAt(i);
+    //initialize output
+    let outputText = "";
+
+    for (let i = 0; i < inputText.length; i++) {
+        let c = inputText.charCodeAt(i);
 
         if (c >= 65 && c <= 90) {
-            result += String.fromCharCode((c - 65 - shift + 26) % 26 + 65);
+            outputText += String.fromCharCode((c - 65 - shift_parameter + 26) % 26 + 65);
         } else if (c >= 97 && c <= 122) {
-            result += String.fromCharCode((c - 97 - shift + 26) % 26 + 97);
+            outputText += String.fromCharCode((c - 97 - shift_parameter + 26) % 26 + 97);
         } else {
-            result += text.charAt(i);
+            outputText += inputText.charAt(i);
         }
     }
 
-    outputElement.value = result;
+    return outputText;
 }
 
 //xor Encrypt
-function xorEncrypt() {
-    const input = document.getElementById('xor_input_encrypt').value;
-    const outputElement = document.getElementById('xor_output_encrypt');
-    const cipher = document.getElementById('xor_cipher_encrypt').value;
+function xorEncrypt(inputText) {
+
+    //get Parameter
+    const parameter = document.getElementById('xor_unnamed_encrypt').value;
+
+    //initialize output
+    let outputText = "";
     
-    outputElement.value = input.split('').map(function (e) {
-        return String.fromCharCode(e.charCodeAt(0) ^ cipher.charCodeAt(0))
+    outputText = inputText.split('').map(function (e) {
+        return String.fromCharCode(e.charCodeAt(0) ^ parameter.charCodeAt(0))
     }).join('');
+
+    return outputText;
 }
 
 //xor Decrypt
-function xorDecrypt() {
-    const input = document.getElementById('xor_input_decrypt').value;
-    const outputElement = document.getElementById('xor_output_decrypt');
-    const cipher = document.getElementById('xor_cipher_decrypt').value;
+function xorDecrypt(inputText) {
 
-    outputElement.value = input.split('').map(function (e) {
-        return String.fromCharCode(e.charCodeAt(0) ^ cipher.charCodeAt(0))
+    //get Parameter
+    const parameter = document.getElementById('xor_unnamed_decrypt').value;
+
+    //initialize output
+    let outputText = "";
+
+    outputText = inputText.split('').map(function (e) {
+        return String.fromCharCode(e.charCodeAt(0) ^ parameter.charCodeAt(0))
     }).join('');
+
+    return outputText;
 }
 
 // Atbash Encryption
-function atbashEncrypt() {
-    const inputElement = document.getElementById('atbash_input_encrypt');
-    const outputElement = document.getElementById('atbash_output_encrypt');
-    
-    let input = inputElement.value;
-    let output = "";
+function atbashEncrypt(inputText) {
 
-    for (let i = 0; i < input.length; i++) {
-        let c = input.charCodeAt(i);
+    //initialize output
+    let outputText = "";
+
+    for (let i = 0; i < inputText.length; i++) {
+        let c = inputText.charCodeAt(i);
 
         if (c >= 65 && c <= 90) {
             // Uppercase letter
-            output += String.fromCharCode(90 - (c - 65));
+            outputText += String.fromCharCode(90 - (c - 65));
         } else if (c >= 97 && c <= 122) {
             // Lowercase letter
-            output += String.fromCharCode(122 - (c - 97));
+            outputText += String.fromCharCode(122 - (c - 97));
         } else {
             // Non-alphabetic character, copy as is
-            output += input.charAt(i);
+            outputText += inputText.charAt(i);
         }
     }
 
-    outputElement.value = output;
+    return outputText;
 }
 
 // Atbash Decryption
-function atbashDecrypt() {
-    const inputElement = document.getElementById('atbash_input_decrypt');
-    const outputElement = document.getElementById('atbash_output_decrypt');
-    
-    let input = inputElement.value;
-    let output = "";
+function atbashDecrypt(inputText) {
 
-    for (let i = 0; i < input.length; i++) {
-        let c = input.charCodeAt(i);
+    //initialize output
+    let outputText = "";
+
+    for (let i = 0; i < inputText.length; i++) {
+        let c = inputText.charCodeAt(i);
 
         if (c >= 65 && c <= 90) {
             // Uppercase letter
-            output += String.fromCharCode(90 - (c - 65));
+            outputText += String.fromCharCode(90 - (c - 65));
         } else if (c >= 97 && c <= 122) {
             // Lowercase letter
-            output += String.fromCharCode(122 - (c - 97));
+            outputText += String.fromCharCode(122 - (c - 97));
         } else {
             // Non-alphabetic character, copy as is
-            output += input.charAt(i);
+            outputText += inputText.charAt(i);
         }
     }
-
-    outputElement.value = output;
+    return outputText;
 }
