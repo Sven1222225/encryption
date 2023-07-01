@@ -30,6 +30,14 @@ function handleMethod() {
             element.classList.add('hidden');
         }
     });
+
+    //Clear Outputs
+    const encrypt = document.getElementById('output_encrypt');
+    const decrypt = document.getElementById('output_decrypt');
+
+    encrypt.value = "";
+    decrypt.value = "";
+
 }
 
 //Handle Encrypt
