@@ -1,5 +1,22 @@
+//Selector
+let selectedMethod = "";
+
+document.querySelectorAll(".method_item").forEach(function(item) {
+    item.addEventListener('click', function(event) {
+
+        // Update the selected value
+        selectedMethod = this.getAttribute("data-value");
+
+        // Update the html
+        handleMethod();
+
+        // Update the button text
+        document.getElementById("method").textContent = this.textContent;
+    });
+});
+
+
 //Elements
-const methodSelect = document.getElementById('method');
 const inputEncrypt = document.getElementById('input_encrypt');
 const inputDecrypt = document.getElementById('input_decrypt');
 const outputEncrypt = document.getElementById('output_encrypt');
@@ -8,13 +25,11 @@ const encryptButton = document.getElementById('encrypt');
 const decryptButton = document.getElementById('decrypt');
 
 //Event Listeners
-methodSelect.addEventListener('change', handleMethod);
 encryptButton.addEventListener('click', handleEncrypt);
 decryptButton.addEventListener('click', handleDecrypt);
 
 //Handle Methods
 function handleMethod() {
-    const selectedMethod = methodSelect.value;
 
     // Get all Elements with a 'name' attribute
     const methodElements = document.querySelectorAll('[name]');
@@ -43,7 +58,6 @@ function handleMethod() {
 //Handle Encrypt
 function handleEncrypt() {
     //get Values
-    const selectedMethod = methodSelect.value;
     const inputText = document.getElementById('input_encrypt').value;
     const outputField = document.getElementById('output_encrypt');
 
@@ -79,7 +93,6 @@ function handleEncrypt() {
 //Handle Decrypt
 function handleDecrypt() {
     //get Values
-    const selectedMethod = methodSelect.value;
     const inputText = document.getElementById('input_decrypt').value;
     const outputField = document.getElementById('output_decrypt');
 
