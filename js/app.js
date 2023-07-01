@@ -27,10 +27,15 @@ const caesarShiftEncryptField = document.getElementById('caesar_shift_encrypt');
 const caesarShiftDecryptField = document.getElementById('caesar_shift_decrypt');
 
 //Setup random default values
-//generiert en nummer vo -25 bis +25
+//generiert en nummer von -25 bis +25
 const random_caesar = Math.floor(Math.random() * 51) - 25;
 document.getElementById('caesar_shift_encrypt').value = random_caesar;
 document.getElementById('caesar_shift_decrypt').value = random_caesar;
+
+//generiert en nummer von 0 bis 9
+const random_xor = Math.floor(Math.random() * 10);
+document.getElementById('xor_encrypt').value = random_xor;
+document.getElementById('xor_decrypt').value = random_xor;
 
 //Event Listeners
 encryptButton.addEventListener('click', handleEncrypt);
@@ -134,6 +139,12 @@ function handleFieldSynchronization(event, fieldToBeSynced) {
 
 // Caesar Encryption
 function caesarEncrypt(inputText) {
+    //validate input text.
+    error = validateCaesar(inputText)
+
+    if(error != null){
+        return error;
+    }
 
     //get Parameter
     let shift_parameter = parseInt(document.getElementById('caesar_shift_encrypt').value);
@@ -163,6 +174,12 @@ function caesarEncrypt(inputText) {
 
 // Caesar Decryption
 function caesarDecrypt(inputText) {
+    //validate input text.
+    error = validateCaesar(inputText)
+
+    if(error != null){
+        return error;
+    }
 
     //get Parameter
     let shift_parameter = parseInt(document.getElementById('caesar_shift_decrypt').value);
@@ -192,15 +209,14 @@ function caesarDecrypt(inputText) {
 
 //xor Encrypt
 function xorEncrypt(inputText) {
-
     //get Parameter
-    const parameter = document.getElementById('xor_unnamed_encrypt').value;
+    const parameter = document.getElementById('xor_encrypt').value;
 
     //initialize output
     let outputText = "";
     
     outputText = inputText.split('').map(function (e) {
-        return String.fromCharCode(e.charCodeAt(0) ^ parameter.charCodeAt(0))
+        return (e.charCodeAt(0) ^ parameter.charCodeAt(0)).toString('16');
     }).join('');
 
     return outputText;
@@ -208,15 +224,21 @@ function xorEncrypt(inputText) {
 
 //xor Decrypt
 function xorDecrypt(inputText) {
+    //validate input text.
+    error = validateXorHex(inputText)
+
+    if(error != null){
+        return error;
+    }
 
     //get Parameter
-    const parameter = document.getElementById('xor_unnamed_decrypt').value;
+    const parameter = document.getElementById('xor_decrypt').value;
 
     //initialize output
     let outputText = "";
 
-    outputText = inputText.split('').map(function (e) {
-        return String.fromCharCode(e.charCodeAt(0) ^ parameter.charCodeAt(0))
+    outputText = inputText.match(/.{1,2}/g).map(function (e) {
+        return String.fromCharCode(parseInt(e, 16) ^ parameter.charCodeAt(0))
     }).join('');
 
     return outputText;
@@ -267,4 +289,26 @@ function atbashDecrypt(inputText) {
         }
     }
     return outputText;
+}
+
+
+//Validation
+function validateCaesar(text){
+    const check = text.match(/[^a-zA-Z\s]/);
+
+    if(check !== null){
+        return 'Bitte nur Buchstaben und Leerzeichen!';
+    }
+
+    return null;
+}
+
+function validateXorHex(text){
+    const check = text.match(/[^0-9a-f]/);
+
+    if(check !== null){
+        return 'Bitte nur HEX Zahlen!';
+    }
+
+    return null;
 }

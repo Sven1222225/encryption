@@ -24,7 +24,7 @@
                     <div id="method">--Bitte Auswählen--</div>
                     <div class="method_dropdown">
                         <span class="method_item" data-value="caesar">Caesar</span>
-                        <span class="method_item" data-value="xor">XOR</span>
+                        <span class="method_item" data-value="xor">XOR zu HEX</span>
                         <span class="method_item" data-value="atbash">atbash</span>
                     </div>
                 </div>
@@ -57,8 +57,8 @@
                             <div name="xor" class="hidden">
                                 <h3 class="text-2xl text-center">Parameter</h3>
                                 <div class="flex justify-center gap-2">
-                                    <label for="xor_unnamed_encrypt">Key</label>
-                                    <input id="xor_unnamed_encrypt" type="text">
+                                    <label for="xor_encrypt">Key</label>
+                                    <input id="xor_encrypt" type="number" min="0" max="9">
                                 </div>
                             </div>
 
@@ -97,8 +97,8 @@
                             <div name="xor" class="hidden">
                                 <h3 class="text-2xl text-center">Parameter</h3>
                                 <div class="flex justify-center gap-2">
-                                    <label for="xor_unnamed_decrypt">Key</label>
-                                    <input id="xor_unnamed_decrypt" type="text">
+                                    <label for="xor_decrypt">Key</label>
+                                    <input id="xor_decrypt" type="number" min="0" max="9">
                                 </div>
                             </div>
 

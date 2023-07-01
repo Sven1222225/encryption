@@ -121,8 +121,8 @@ encrypt Example:
     <!-- XOR -->
     <div name="example" class="hidden">
         <h3 class="text-2xl">Parameter:</h3>
-        <label for="example_unnamed_encrypt">Unnamed</label>
-        <input id="example_unnamed_encrypt" type="text">
+        <label for="example_encrypt">Key</label>
+        <input id="example_encrypt" type="text">
     </div>
 
 </div>
@@ -143,8 +143,8 @@ decrypt Example:
     <!-- XOR -->
     <div name="example" class="hidden">
         <h3 class="text-2xl">Parameter:</h3>
-        <label for="example_unnamed_decrypt">Unnamed</label>
-        <input id="example_unnamed_decrypt" type="text">
+        <label for="example_decrypt">Key</label>
+        <input id="example_decrypt" type="text">
     </div>
 
 </div>
@@ -157,11 +157,11 @@ inside the Methods:
 
 example_encrypt:
 ```javascript
-const parameter = document.getElementById('example_unnamed_encrypt').value;
+const parameter = document.getElementById('example_encrypt').value;
 ```
 example_decrypt:
 ```javascript
-const parameter = document.getElementById('example_unnamed_decrypt').value;
+const parameter = document.getElementById('example_decrypt').value;
 ```
 
 ### configuring the system
