@@ -20,6 +20,7 @@
                 <div class="flex gap-2 justify-center">    
                     <span id="nav_caesar" data-state="selected" class="data-[state=selected]:bg-teal-400 bg-teal-600 bg-opacity-80 rounded-lg py-2 px-4 cursor-pointer shadow-lg border-solid border-gray-500 border-opacity-50 border-2 data-[state=selected]:hover:border-opacity-70 data-[state=selected]:hover:bg-opacity-100 select-none">Caesar</span>
                     <span id="nav_xor" data-state="unselected" class="data-[state=selected]:bg-teal-400 bg-teal-600 bg-opacity-80 rounded-lg py-2 px-4 cursor-pointer shadow-lg border-solid border-gray-500 border-opacity-50 border-2 data-[state=selected]:hover:border-opacity-70 data-[state=selected]:hover:bg-opacity-100 select-none">XOR</span>
+                    <span id="nav_atbash" data-state="unselected" class="data-[state=selected]:bg-teal-400 bg-teal-600 bg-opacity-80 rounded-lg py-2 px-4 cursor-pointer shadow-lg border-solid border-gray-500 border-opacity-50 border-2 data-[state=selected]:hover:border-opacity-70 data-[state=selected]:hover:bg-opacity-100 select-none">Atbash</span>
                     <span id="nav_new" data-state="unselected" class="data-[state=selected]:bg-teal-400 bg-teal-600 bg-opacity-80 rounded-lg py-2 px-4 cursor-pointer shadow-lg border-solid border-gray-500 border-opacity-50 border-2 data-[state=selected]:hover:border-opacity-70 data-[state=selected]:hover:bg-opacity-100 select-none">New</span>
                 </div>
             </div>
@@ -80,6 +81,27 @@
 
                     <h2 class="text-3xl">Klartext</h2>
                     <textarea id="xor_output_decrypt" class="w-full h-32" name="input" readonly></textarea>
+                </div>
+            </div>
+            <!------------------------------------- Atbash ------------------------------------->
+            <div id="section_atbash" class="flex gap-8 flex-wrap justify-center shadow-lg hidden">
+                <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500 ">
+                    <h2 class="text-3xl">Klartext</h2>
+                    <textarea id="atbash_input_encrypt" class="w-full h-32" name="input"></textarea>
+
+                    <button id="atbash_button_encrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Verschlüsseln</button>
+
+                    <h2 class="text-3xl">Verschlüsselter Text</h2>
+                    <textarea id="atbash_output_encrypt" class="w-full h-32" name="input" readonly></textarea>
+                </div>
+                <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500 ">
+                    <h2 class="text-3xl">Verschlüsselter Text</h2>
+                    <textarea id="atbash_input_decrypt" class="w-full h-32" name="input"></textarea>
+
+                    <button id="atbash_button_decrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Entschlüsseln</button>
+
+                    <h2 class="text-3xl">Klartext</h2>
+                    <textarea id="atbash_output_decrypt" class="w-full h-32" name="input" readonly></textarea>
                 </div>
             </div>
             <!------------------------------------- $$$ ------------------------------------->
