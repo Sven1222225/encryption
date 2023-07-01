@@ -165,6 +165,7 @@ function caesarEncrypt(inputText) {
     let shift_parameter = parseInt(document.getElementById('caesar_shift_encrypt').value);
 
     //mit negativä Zahlä umgah
+    //somit chömmer au links shift unterstütze
     if(shift_parameter < 0){
         shift_parameter = 26 - Math.abs(shift_parameter);
     }
@@ -200,6 +201,7 @@ function caesarDecrypt(inputText) {
     let shift_parameter = parseInt(document.getElementById('caesar_shift_decrypt').value);
 
     //mit negativä Zahlä umgah
+    //somit chömmer au links shift unterstütze
     if(shift_parameter < 0){
         shift_parameter = 26 - Math.abs(shift_parameter);
     }
