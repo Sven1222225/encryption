@@ -7,6 +7,14 @@ document.querySelectorAll(".method_item").forEach(function(item) {
         // Update the selected value
         selectedMethod = this.getAttribute("data-value");
 
+        // Remove 'active' class from all items
+        document.querySelectorAll(".method_item").forEach(function(otherItem) {
+            otherItem.classList.remove('active');
+        });
+
+        // Add 'active' class to the clicked item
+        this.classList.add('active');
+
         // Update the html
         handleMethod();
 
@@ -23,6 +31,7 @@ const outputEncrypt = document.getElementById('output_encrypt');
 const outputDecrypt = document.getElementById('output_decrypt');
 const encryptButton = document.getElementById('encrypt');
 const decryptButton = document.getElementById('decrypt');
+const container = document.getElementById('container');
 const caesarShiftEncryptField = document.getElementById('caesar_shift_encrypt');
 const caesarShiftDecryptField = document.getElementById('caesar_shift_decrypt');
 
@@ -48,6 +57,9 @@ function handleMethod() {
 
     // Get all Elements with a 'name' attribute
     const methodElements = document.querySelectorAll('[name]');
+
+    // Show the container (I know it does it every time this was just the easiest way to do it)
+    document.getElementById('container').classList.remove('hidden');
 
     // Go through each element
     methodElements.forEach(function(element) {

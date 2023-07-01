@@ -19,19 +19,18 @@
             <div class="mb-4 p-8 bg-lime-500 rounded-xl border-solid border-lime-700 border-4 flex flex-col items-center">
                 <h1 class="text-5xl mb-5">Verschlüsselung</h1>
 
-                <h2 class="mb-2">Wähle eine Verschlüsselungsmethode</h2>
-                <div>
-                    <div id="method">--Bitte Auswählen--</div>
-                    <div class="method_dropdown">
-                        <span class="method_item" data-value="caesar">Caesar</span>
-                        <span class="method_item" data-value="xor">XOR zu HEX</span>
-                        <span class="method_item" data-value="atbash">atbash</span>
+                <h2 class="text-lg font-bold mb-4">Verschlüsselung Methode:</h2>
+                <div class="relative w-64">
+                    <div id="method" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none hover:bg-teal-500 cursor-default text-center">--Bitte Auswählen--</div>
+                    <div class="method_dropdown absolute left-0 rounded-lg shadow-lg bg-white min-w-full">
+                        <a class="method_item block px-4 py-2 hover:bg-gray-100 cursor-pointer rounded-t-lg" data-value="caesar">Caesar</a>
+                        <a class="method_item block px-4 py-2 hover:bg-gray-100 cursor-pointer" data-value="xor">Xor</a>
+                        <a class="method_item block px-4 py-2 hover:bg-gray-100 cursor-pointer rounded-b-lg" data-value="atbash">Atbash</a>
                     </div>
                 </div>
-                
             </div>
 
-            <div class="flex gap-8 flex-wrap justify-center">
+            <div id="container" class="flex gap-8 flex-wrap justify-center hidden">
 
                 <!-- Encrypt -->
                 <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500 w-80">
@@ -45,7 +44,7 @@
                         <div> <!-- Parameters -->
                             
                             <!-- Caesar -->
-                            <div name="caesar" class="">
+                            <div name="caesar" class="hidden">
                                 <h3 class="text-2xl text-center">Parameter</h3>
                                 <div class="flex justify-center gap-2">
                                     <label for="caesar_shift_encrypt">Shift</label>
@@ -85,7 +84,7 @@
                         <div> <!-- Parameters -->
                             
                             <!-- Caesar -->
-                            <div name="caesar" class="">
+                            <div name="caesar" class="hidden">
                                 <h3 class="text-2xl text-center">Parameter</h3>
                                 <div class="flex justify-center gap-2">
                                     <label for="caesar_shift_decrypt">Shift</label>
