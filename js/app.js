@@ -1,30 +1,30 @@
-//Selector
+//Uswhäler
 let selectedMethod = "";
 
 document.querySelectorAll(".method_item").forEach(function(item) {
     item.addEventListener('click', function(event) {
 
-        // Update the selected value
+        // "selectedMethod" Updäte
         selectedMethod = this.getAttribute("data-value");
 
-        // Remove 'active' class from all items
+        // "active" Klass entärnä
         document.querySelectorAll(".method_item").forEach(function(otherItem) {
             otherItem.classList.remove('active');
         });
 
-        // Add 'active' class to the clicked item
+        // "active" Klass hinzufüegä zum gwählte Elemänt
         this.classList.add('active');
 
-        // Update the html
+        // "Html" Updäte
         handleMethod();
 
-        // Update the button text
+        // Knopf Text ändärä
         document.getElementById("method").textContent = this.textContent;
     });
 });
 
 
-//Elements
+//Elemänt
 const inputEncrypt = document.getElementById('input_encrypt');
 const inputDecrypt = document.getElementById('input_decrypt');
 const outputEncrypt = document.getElementById('output_encrypt');
@@ -35,7 +35,6 @@ const container = document.getElementById('container');
 const caesarShiftEncryptField = document.getElementById('caesar_shift_encrypt');
 const caesarShiftDecryptField = document.getElementById('caesar_shift_decrypt');
 
-//Setup random default values
 //generiert en nummer von -25 bis +25
 const random_caesar = Math.floor(Math.random() * 51) - 25;
 document.getElementById('caesar_shift_encrypt').value = random_caesar;
@@ -46,34 +45,34 @@ const random_xor = Math.floor(Math.random() * 10);
 document.getElementById('xor_encrypt').value = random_xor;
 document.getElementById('xor_decrypt').value = random_xor;
 
-//Event Listeners
+//Fall Zuälosär
 encryptButton.addEventListener('click', handleEncrypt);
 decryptButton.addEventListener('click', handleDecrypt);
 caesarShiftEncryptField.addEventListener('change', event => handleFieldSynchronization(event, caesarShiftDecryptField));
 caesarShiftDecryptField.addEventListener('change', event => handleFieldSynchronization(event, caesarShiftEncryptField));
 
-//Handle Methods
+//Metodä Umgang
 function handleMethod() {
 
-    // Get all Elements with a 'name' attribute
+    // Alli Elemänt mitm "name" Attribut
     const methodElements = document.querySelectorAll('[name]');
 
-    // Show the container (I know it does it every time this was just the easiest way to do it)
+    // Container Anzäigä
     document.getElementById('container').classList.remove('hidden');
 
-    // Go through each element
+    //Dur alli Elemänt duräga
     methodElements.forEach(function(element) {
-        // if the element is associated with the selected method make it visible
+        //Wänns Element mitm gwählte Methodä verbundä isch, zeigs
         if (element.getAttribute('name') === selectedMethod) {
             element.classList.remove('hidden');
         }
-        //if element is not associated with the selected method hide it
+        //Wänn nöd, verstecks
         else {
             element.classList.add('hidden');
         }
     });
 
-    //Clear Outputs
+    //"Outputs" lärä
     const encrypt = document.getElementById('output_encrypt');
     const decrypt = document.getElementById('output_decrypt');
 
@@ -81,18 +80,18 @@ function handleMethod() {
     decrypt.value = "";
 }
 
-//Handle Encrypt
+//Verschlüsslig Umgang
 function handleEncrypt() {
-    //get Values
+    //Wertä holä
     const inputText = document.getElementById('input_encrypt').value;
     const outputField = document.getElementById('output_encrypt');
 
     let outputText = "";
 
-    //check which method is selected and call the corresponding function
+    //luegä weli Methodä gwählt isch und rüefä drichtig Funktion uf
     switch (selectedMethod) {
     
-        //Caesar
+        //Zäsar
         case 'caesar':
             outputText = caesarEncrypt(inputText);
             break;
@@ -108,22 +107,22 @@ function handleEncrypt() {
             break;
     }
 
-    //set output
+    //Text usgäh
     outputField.value = outputText;
 }
 
-//Handle Decrypt
+//Entschlüsslig Umgang
 function handleDecrypt() {
-    //get Values
+    //Wertä holä
     const inputText = document.getElementById('input_decrypt').value;
     const outputField = document.getElementById('output_decrypt');
 
     let outputText = "";
 
-    //check which method is selected and call the corresponding function
+    //luegä weli Methodä gwählt isch und rüefä drichtig Funktion uf
     switch (selectedMethod) {
     
-        //Caesar
+        //Zäsar
         case 'caesar':
             outputText = caesarDecrypt(inputText);
             break;
@@ -139,34 +138,34 @@ function handleDecrypt() {
             break;
     }
 
-    //set output
+    //Text usgäh
     outputField.value = outputText;
 }
 
-//Handle Field Synchronization
+//mit Fäld synchronisation Umgah
 function handleFieldSynchronization(event, fieldToBeSynced) {
     const value = event.currentTarget.value;
     fieldToBeSynced.value = value;
 }
 
-// Caesar Encryption
+//Zäsar Verschlüsslig 
 function caesarEncrypt(inputText) {
-    //validate input text.
+    //Text validierä
     error = validateCaesar(inputText)
 
     if(error != null){
         return error;
     }
 
-    //get Parameter
+    //hol Parameter
     let shift_parameter = parseInt(document.getElementById('caesar_shift_encrypt').value);
 
-    //handle negative number
+    //mit negativä Zahlä umgah
     if(shift_parameter < 0){
         shift_parameter = 26 - Math.abs(shift_parameter);
     }
 
-    //initialize output
+    //"Output" Text erstellä
     let outputText = "";
 
     for (let i = 0; i < inputText.length; i++) {
@@ -184,24 +183,24 @@ function caesarEncrypt(inputText) {
     return outputText;
 }
 
-// Caesar Decryption
+// Zäsar Entschlüsslig
 function caesarDecrypt(inputText) {
-    //validate input text.
+    //Text validierä
     error = validateCaesar(inputText)
 
     if(error != null){
         return error;
     }
 
-    //get Parameter
+    //hol Parameter
     let shift_parameter = parseInt(document.getElementById('caesar_shift_decrypt').value);
 
-    //handle negative number
+    //mit negativä Zahlä umgah
     if(shift_parameter < 0){
         shift_parameter = 26 - Math.abs(shift_parameter);
     }
 
-    //initialize output
+    //"Output" Text erstellä
     let outputText = "";
 
     for (let i = 0; i < inputText.length; i++) {
@@ -219,12 +218,12 @@ function caesarDecrypt(inputText) {
     return outputText;
 }
 
-//xor Encrypt
+//Xor Verschlüsslig
 function xorEncrypt(inputText) {
-    //get Parameter
+    //hol Parameter
     const parameter = document.getElementById('xor_encrypt').value;
 
-    //initialize output
+    //"Output" Text erstellä
     let outputText = "";
     
     outputText = inputText.split('').map(function (e) {
@@ -234,19 +233,19 @@ function xorEncrypt(inputText) {
     return outputText;
 }
 
-//xor Decrypt
+//Xor Entschlüsslig
 function xorDecrypt(inputText) {
-    //validate input text.
+    //Text validierä
     error = validateXorHex(inputText)
 
     if(error != null){
         return error;
     }
 
-    //get Parameter
+    //hol Parameter
     const parameter = document.getElementById('xor_decrypt').value;
 
-    //initialize output
+    //"Output" Text erstellä
     let outputText = "";
 
     outputText = inputText.match(/.{1,2}/g).map(function (e) {
@@ -256,23 +255,23 @@ function xorDecrypt(inputText) {
     return outputText;
 }
 
-// Atbash Encryption
+//Atbash Verschlüsslig
 function atbashEncrypt(inputText) {
 
-    //initialize output
+    //"Output" Text erstellä
     let outputText = "";
 
     for (let i = 0; i < inputText.length; i++) {
         let c = inputText.charCodeAt(i);
 
         if (c >= 65 && c <= 90) {
-            // Uppercase letter
+            //Grosä Buchstabä
             outputText += String.fromCharCode(90 - (c - 65));
         } else if (c >= 97 && c <= 122) {
-            // Lowercase letter
+            //Chlinä Buchstabä
             outputText += String.fromCharCode(122 - (c - 97));
         } else {
-            // Non-alphabetic character, copy as is
+            //kopierä wänn nöd Buchstabä 
             outputText += inputText.charAt(i);
         }
     }
@@ -280,23 +279,23 @@ function atbashEncrypt(inputText) {
     return outputText;
 }
 
-// Atbash Decryption
+//Atbash Entschlüsslig
 function atbashDecrypt(inputText) {
 
-    //initialize output
+    //"Output" Text erstellä
     let outputText = "";
 
     for (let i = 0; i < inputText.length; i++) {
         let c = inputText.charCodeAt(i);
 
         if (c >= 65 && c <= 90) {
-            // Uppercase letter
+            //Grosä Buchstabä
             outputText += String.fromCharCode(90 - (c - 65));
         } else if (c >= 97 && c <= 122) {
-            // Lowercase letter
+            //Chlinä Buchstabä
             outputText += String.fromCharCode(122 - (c - 97));
         } else {
-            // Non-alphabetic character, copy as is
+            //kopierä wänn nöd Buchstabä
             outputText += inputText.charAt(i);
         }
     }
@@ -304,7 +303,7 @@ function atbashDecrypt(inputText) {
 }
 
 
-//Validation
+//Validierigsfunktion
 function validateCaesar(text){
     const check = text.match(/[^a-zA-Z\s]/);
 
