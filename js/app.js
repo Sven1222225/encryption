@@ -7,6 +7,12 @@ const outputDecrypt = document.getElementById('output_decrypt');
 const encryptButton = document.getElementById('encrypt');
 const decryptButton = document.getElementById('decrypt');
 
+//Setup random default values
+//generiert en nummer vo -25 bis +25
+const random_caesar = Math.floor(Math.random() * 51) - 25;
+document.getElementById('caesar_shift_encrypt').value = random_caesar;
+document.getElementById('caesar_shift_decrypt').value = random_caesar;
+
 //Event Listeners
 methodSelect.addEventListener('change', handleMethod);
 encryptButton.addEventListener('click', handleEncrypt);
@@ -107,7 +113,12 @@ function handleDecrypt() {
 function caesarEncrypt(inputText) {
 
     //get Parameter
-    const shift_parameter = parseInt(document.getElementById('caesar_shift_encrypt').value);
+    let shift_parameter = parseInt(document.getElementById('caesar_shift_encrypt').value);
+
+    //handle negative number
+    if(shift_parameter < 0){
+        shift_parameter = 26 - Math.abs(shift_parameter);
+    }
 
     //initialize output
     let outputText = "";
@@ -131,7 +142,12 @@ function caesarEncrypt(inputText) {
 function caesarDecrypt(inputText) {
 
     //get Parameter
-    const shift_parameter = parseInt(document.getElementById('caesar_shift_decrypt').value);
+    let shift_parameter = parseInt(document.getElementById('caesar_shift_decrypt').value);
+
+    //handle negative number
+    if(shift_parameter < 0){
+        shift_parameter = 26 - Math.abs(shift_parameter);
+    }
 
     //initialize output
     let outputText = "";
