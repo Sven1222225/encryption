@@ -19,7 +19,6 @@
                 
                 <label for="method">Verschlüsselungsmethode</label>
                 <select id="method" class="">
-                    <option value="none" selected disabled>--Bitte wählen--</option>
                     <option value="caesar">Caesar</option>
                     <option value="xor">XOR</option>
                     <option value="atbash">Atbash</option>
@@ -40,7 +39,7 @@
                         <div> <!-- Parameters -->
                             
                             <!-- Caesar -->
-                            <div name="caesar" class="hidden">
+                            <div name="caesar" class="">
                                 <h3 class="text-2xl">Parameter:</h3>
                                 <label for="caesar_shift_encrypt">Shift</label>
                                 <input id="caesar_shift_encrypt" type="number" min="0" max="26" value="0">
@@ -76,7 +75,7 @@
                         <div> <!-- Parameters -->
                             
                             <!-- Caesar -->
-                            <div name="caesar" class="hidden">
+                            <div name="caesar" class="">
                                 <h3 class="text-2xl">Parameter:</h3>
                                 <label for="caesar_shift_decrypt">Shift</label>
                                 <input id="caesar_shift_decrypt" type="number" min="0" max="26" value="0">

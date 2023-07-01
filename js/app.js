@@ -37,7 +37,6 @@ function handleMethod() {
 
     encrypt.value = "";
     decrypt.value = "";
-
 }
 
 //Handle Encrypt
@@ -65,10 +64,6 @@ function handleEncrypt() {
         //Atbash
         case 'atbash':
             outputText = atbashEncrypt(inputText);
-            break;
-        
-        default:
-            outputText = inputText;
             break;
     }
 
@@ -101,10 +96,6 @@ function handleDecrypt() {
         //Atbash
         case 'atbash':
             outputText = atbashDecrypt(inputText);
-            break;
-        
-        default:
-            outputText = inputText;
             break;
     }
 
