@@ -7,6 +7,8 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="js/app.js" defer></script>
 
+        <link rel="stylesheet" href="css/style.css">
+
         <title>Verschlüsselung</title>
 
     </head>
@@ -16,13 +18,17 @@
             
             <div class="mb-4 p-8 bg-lime-500 rounded-xl border-solid border-lime-700 border-4 flex flex-col items-center">
                 <h1 class="text-5xl mb-5">Verschlüsselung</h1>
+
+                <h2>Wähle eine Verschlüsselungsmethode</h2>
+                <div>
+                    <div id="method">--Bitte Auswählen--</div>
+                    <div class="method_dropdown">
+                        <a class="method_item" data-value="caesar">Caesar</a>
+                        <a class="method_item" data-value="xor">Xor</a>
+                        <a class="method_item" data-value="atbash">atbash</a>
+                    </div>
+                </div>
                 
-                <label for="method" class="mb-2">Verschlüsselungsmethode</label>
-                <select id="method" class="">
-                    <option value="caesar">Caesar</option>
-                    <option value="xor">XOR</option>
-                    <option value="atbash">Atbash</option>
-                </select>
             </div>
 
             <div class="flex gap-8 flex-wrap justify-center">
