@@ -227,6 +227,8 @@ function xorEncrypt(inputText) {
     //initialize output
     let outputText = "";
     
+    //Mer splittet jede charakter ond looped über de. Bi jedem loop machet mer en xor operation am charakter sim code(zahl) met em key(zahl) denn konvertieret mer das ine hex wert.
+    //Das met em hex machet mer das mer vermeidet das mer net darstellbari symbohl bechömid.
     outputText = inputText.split('').map(function (e) {
         return (e.charCodeAt(0) ^ parameter.charCodeAt(0)).toString('16');
     }).join('');
@@ -237,6 +239,7 @@ function xorEncrypt(inputText) {
 //xor Decrypt
 function xorDecrypt(inputText) {
     //validate input text.
+    //Mer checked ob de input en hex wert esh idem mer met regex schnell lueget obs nur 0-9 ond a-f charakters het.
     error = validateXorHex(inputText)
 
     if(error != null){
@@ -249,6 +252,9 @@ function xorDecrypt(inputText) {
     //initialize output
     let outputText = "";
 
+    //Zerst splittet mer de inputText ines array wo immer 2 charakter zeme sind (oder wenns net uf gaht esh bem letzte 1 charakter). Z.B. ['5e', '3f]
+    //denn Looped mer über die liste ond parsed d hex wert in en integer ond de wird met em key sim integer g xor'd.
+    //met Join() chlebet mer das ganze weder ine string zeme.
     outputText = inputText.match(/.{1,2}/g).map(function (e) {
         return String.fromCharCode(parseInt(e, 16) ^ parameter.charCodeAt(0))
     }).join('');
