@@ -126,7 +126,7 @@ encrypt Example:
     </div>
 
 </div>
-<button id="encrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Vertschlüsseln</button>
+<button id="encrypt" class="block bg-teal-400 rounded-xl p-2 select-none">Vertschlüsseln</button>
 
 <!-- rest of Code... -->
 ```
@@ -148,7 +148,7 @@ decrypt Example:
     </div>
 
 </div>
-<button id="decrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Entschlüsseln</button>
+<button id="decrypt" class="block bg-teal-400 rounded-xl p-2 select-none">Entschlüsseln</button>
 
 <!-- rest of Code... -->
 ```

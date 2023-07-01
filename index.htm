@@ -17,7 +17,7 @@
             <div class="mb-4 p-8 bg-lime-500 rounded-xl border-solid border-lime-700 border-4 flex flex-col items-center">
                 <h1 class="text-5xl mb-5">Verschlüsselung</h1>
                 
-                <label for="method">Verschlüsselungsmethode</label>
+                <label for="method" class="mb-2">Verschlüsselungsmethode</label>
                 <select id="method" class="">
                     <option value="caesar">Caesar</option>
                     <option value="xor">XOR</option>
@@ -28,10 +28,10 @@
             <div class="flex gap-8 flex-wrap justify-center">
 
                 <!-- Encrypt -->
-                <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500">
+                <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500 w-80">
 
                     <div> <!-- Clear text -->
-                        <h2 class="text-3xl">Klartext</h2>
+                        <h2 class="text-3xl text-center">Klartext</h2>
                         <textarea id="input_encrypt" class="w-full h-32 resize-none"></textarea>
                     </div>
 
@@ -40,34 +40,38 @@
                             
                             <!-- Caesar -->
                             <div name="caesar" class="">
-                                <h3 class="text-2xl">Parameter:</h3>
-                                <label for="caesar_shift_encrypt">Shift</label>
-                                <input id="caesar_shift_encrypt" type="number" min="-25" max="25">
+                                <h3 class="text-2xl text-center">Parameter</h3>
+                                <div class="flex justify-center gap-2">
+                                    <label for="caesar_shift_encrypt">Shift</label>
+                                    <input id="caesar_shift_encrypt" type="number" min="-25" max="25">
+                                </div>
                             </div>
 
                             <!-- XOR -->
                             <div name="xor" class="hidden">
-                                <h3 class="text-2xl">Parameter:</h3>
-                                <label for="xor_unnamed_encrypt">Unnamed</label>
-                                <input id="xor_unnamed_encrypt" type="text">
+                                <h3 class="text-2xl text-center">Parameter</h3>
+                                <div class="flex justify-center gap-2">
+                                    <label for="xor_unnamed_encrypt">Unnamed</label>
+                                    <input id="xor_unnamed_encrypt" type="text">
+                                </div>
                             </div>
 
                         </div>
-                        <button id="encrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Vertschlüsseln</button>
+                        <button id="encrypt" class="block bg-teal-400 rounded-xl px-4 py-2 my-4 select-none m-auto">Vertschlüsseln</button>
                     </div>
 
                     <div> <!-- Encrypted -->
-                        <h2 class="text-3xl">Verschlüsselter Text</h2>
+                        <h2 class="text-3xl text-center">Verschlüsselter Text</h2>
                         <textarea id="output_encrypt" class="w-full h-32 resize-none" readonly></textarea>
                     </div>
 
                 </div>
                 
                 <!-- Decrypt -->
-                <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500">
+                <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500 w-80">
                         
                     <div> <!-- Encrypted -->
-                        <h2 class="text-3xl">Verschlüsselter Text</h2>
+                        <h2 class="text-3xl text-center">Verschlüsselter Text</h2>
                         <textarea id="input_decrypt" class="w-full h-32 resize-none"></textarea>
                     </div>
 
@@ -76,24 +80,28 @@
                             
                             <!-- Caesar -->
                             <div name="caesar" class="">
-                                <h3 class="text-2xl">Parameter:</h3>
-                                <label for="caesar_shift_decrypt">Shift</label>
-                                <input id="caesar_shift_decrypt" type="number" min="-25" max="25">
+                                <h3 class="text-2xl text-center">Parameter</h3>
+                                <div class="flex justify-center gap-2">
+                                    <label for="caesar_shift_decrypt">Shift</label>
+                                    <input id="caesar_shift_decrypt" type="number" min="-25" max="25">
+                                </div>
                             </div>
 
                             <!-- XOR -->
                             <div name="xor" class="hidden">
-                                <h3 class="text-2xl">Parameter:</h3>
-                                <label for="xor_unnamed_decrypt">Unnamed</label>
-                                <input id="xor_unnamed_decrypt" type="text">
+                                <h3 class="text-2xl text-center">Parameter</h3>
+                                <div class="flex justify-center gap-2">
+                                    <label for="xor_unnamed_decrypt">Unnamed</label>
+                                    <input id="xor_unnamed_decrypt" type="text">
+                                </div>
                             </div>
 
                         </div>
-                        <button id="decrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Entschlüsseln</button>
+                        <button id="decrypt" class="block bg-teal-400 rounded-xl px-4 py-2 my-4 select-none m-auto">Entschlüsseln</button>
                     </div>
 
                     <div> <!-- Clear text -->
-                        <h2 class="text-3xl">Klartext</h2>
+                        <h2 class="text-3xl text-center">Klartext</h2>
                         <textarea id="output_decrypt" class="w-full h-32 resize-none" readonly></textarea>
                     </div>
 
