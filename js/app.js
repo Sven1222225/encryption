@@ -34,22 +34,26 @@ const decryptButton = document.getElementById('decrypt');
 const container = document.getElementById('container');
 const caesarShiftEncryptField = document.getElementById('caesar_shift_encrypt');
 const caesarShiftDecryptField = document.getElementById('caesar_shift_decrypt');
+const xorEncryptField = document.getElementById('xor_encrypt');
+const xorDecryptField = document.getElementById('xor_decrypt');
 
 //generiert en nummer von -25 bis +25
 const random_caesar = Math.floor(Math.random() * 51) - 25;
-document.getElementById('caesar_shift_encrypt').value = random_caesar;
-document.getElementById('caesar_shift_decrypt').value = random_caesar;
+caesarShiftEncryptField.value = random_caesar;
+caesarShiftDecryptField.value = random_caesar;
 
 //generiert en nummer von 0 bis 9
 const random_xor = Math.floor(Math.random() * 10);
-document.getElementById('xor_encrypt').value = random_xor;
-document.getElementById('xor_decrypt').value = random_xor;
+xorEncryptField.value = random_xor;
+xorDecryptField.value = random_xor;
 
 //Fall Zuälosär
 encryptButton.addEventListener('click', handleEncrypt);
 decryptButton.addEventListener('click', handleDecrypt);
 caesarShiftEncryptField.addEventListener('change', event => handleFieldSynchronization(event, caesarShiftDecryptField));
 caesarShiftDecryptField.addEventListener('change', event => handleFieldSynchronization(event, caesarShiftEncryptField));
+xorEncryptField.addEventListener('change', event => handleFieldSynchronization(event, xorDecryptField));
+xorDecryptField.addEventListener('change', event => handleFieldSynchronization(event, xorEncryptField));
 
 //Metodä Umgang
 function handleMethod() {
