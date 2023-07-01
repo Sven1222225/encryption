@@ -23,10 +23,20 @@ const outputEncrypt = document.getElementById('output_encrypt');
 const outputDecrypt = document.getElementById('output_decrypt');
 const encryptButton = document.getElementById('encrypt');
 const decryptButton = document.getElementById('decrypt');
+const caesarShiftEncryptField = document.getElementById('caesar_shift_encrypt');
+const caesarShiftDecryptField = document.getElementById('caesar_shift_decrypt');
+
+//Setup random default values
+//generiert en nummer vo -25 bis +25
+const random_caesar = Math.floor(Math.random() * 51) - 25;
+document.getElementById('caesar_shift_encrypt').value = random_caesar;
+document.getElementById('caesar_shift_decrypt').value = random_caesar;
 
 //Event Listeners
 encryptButton.addEventListener('click', handleEncrypt);
 decryptButton.addEventListener('click', handleDecrypt);
+caesarShiftEncryptField.addEventListener('change', event => handleFieldSynchronization(event, caesarShiftDecryptField));
+caesarShiftDecryptField.addEventListener('change', event => handleFieldSynchronization(event, caesarShiftEncryptField));
 
 //Handle Methods
 function handleMethod() {
@@ -52,7 +62,6 @@ function handleMethod() {
 
     encrypt.value = "";
     decrypt.value = "";
-
 }
 
 //Handle Encrypt
@@ -79,10 +88,6 @@ function handleEncrypt() {
         //Atbash
         case 'atbash':
             outputText = atbashEncrypt(inputText);
-            break;
-        
-        default:
-            outputText = inputText;
             break;
     }
 
@@ -115,21 +120,28 @@ function handleDecrypt() {
         case 'atbash':
             outputText = atbashDecrypt(inputText);
             break;
-        
-        default:
-            outputText = inputText;
-            break;
     }
 
     //set output
     outputField.value = outputText;
 }
 
+//Handle Field Synchronization
+function handleFieldSynchronization(event, fieldToBeSynced) {
+    const value = event.currentTarget.value;
+    fieldToBeSynced.value = value;
+}
+
 // Caesar Encryption
 function caesarEncrypt(inputText) {
 
     //get Parameter
-    const shift_parameter = parseInt(document.getElementById('caesar_shift_encrypt').value);
+    let shift_parameter = parseInt(document.getElementById('caesar_shift_encrypt').value);
+
+    //handle negative number
+    if(shift_parameter < 0){
+        shift_parameter = 26 - Math.abs(shift_parameter);
+    }
 
     //initialize output
     let outputText = "";
@@ -153,7 +165,12 @@ function caesarEncrypt(inputText) {
 function caesarDecrypt(inputText) {
 
     //get Parameter
-    const shift_parameter = parseInt(document.getElementById('caesar_shift_decrypt').value);
+    let shift_parameter = parseInt(document.getElementById('caesar_shift_decrypt').value);
+
+    //handle negative number
+    if(shift_parameter < 0){
+        shift_parameter = 26 - Math.abs(shift_parameter);
+    }
 
     //initialize output
     let outputText = "";
