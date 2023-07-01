@@ -29,30 +29,30 @@
                 <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500 ">
                     <h2 class="text-3xl">Klartext</h2>
                     <textarea id="caesar_input_encrypt" class="w-full h-32" name="input"></textarea>
-
+            
                     <label for="caesar_cipher_encrypt">Cipher
-                        <input id="caesar_cipher_encrypt" name="cipher" type="text">
+                        <input id="caesar_cipher_encrypt" name="cipher" type="number" min="0" max="25" value="0">
                     </label>
-
+            
                     <button id="caesar_button_encrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Verschlüsseln</button>
-
+            
                     <h2 class="text-3xl">Verschlüsselter Text</h2>
                     <textarea id="caesar_output_encrypt" class="w-full h-32" name="input" readonly></textarea>
                 </div>
                 <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500 ">
                     <h2 class="text-3xl">Verschlüsselter Text</h2>
                     <textarea id="caesar_input_decrypt" class="w-full h-32" name="input"></textarea>
-
+            
                     <label for="caesar_cipher_decrypt">Cipher
-                        <input id="caesar_cipher_decrypt" name="cipher" type="text">
+                        <input id="caesar_cipher_decrypt" name="cipher" type="number" min="0" max="25" value="0">
                     </label>
-
+            
                     <button id="caesar_button_decrypt" class="btn-crypt block bg-teal-400 rounded-xl p-2 select-none">Entschlüsseln</button>
-
+            
                     <h2 class="text-3xl">Klartext</h2>
                     <textarea id="caesar_output_decrypt" class="w-full h-32" name="input" readonly></textarea>
                 </div>
-            </div>
+            </div>            
             <!------------------------------------- XOR ------------------------------------->
             <div id="section_xor" class="flex gap-8 flex-wrap justify-center shadow-lg hidden">
                 <div class="border-solid border-lime-700 border-4 rounded-xl p-2 bg-lime-500 ">
