@@ -6,6 +6,8 @@ const outputEncrypt = document.getElementById('output_encrypt');
 const outputDecrypt = document.getElementById('output_decrypt');
 const encryptButton = document.getElementById('encrypt');
 const decryptButton = document.getElementById('decrypt');
+const caesarShiftEncryptField = document.getElementById('caesar_shift_encrypt');
+const caesarShiftDecryptField = document.getElementById('caesar_shift_decrypt');
 
 //Setup random default values
 //generiert en nummer vo -25 bis +25
@@ -17,6 +19,8 @@ document.getElementById('caesar_shift_decrypt').value = random_caesar;
 methodSelect.addEventListener('change', handleMethod);
 encryptButton.addEventListener('click', handleEncrypt);
 decryptButton.addEventListener('click', handleDecrypt);
+caesarShiftEncryptField.addEventListener('change', event => handleFieldSynchronization(event, caesarShiftDecryptField));
+caesarShiftDecryptField.addEventListener('change', event => handleFieldSynchronization(event, caesarShiftEncryptField));
 
 //Handle Methods
 function handleMethod() {
@@ -107,6 +111,12 @@ function handleDecrypt() {
 
     //set output
     outputField.value = outputText;
+}
+
+//Handle Field Synchronization
+function handleFieldSynchronization(event, fieldToBeSynced) {
+    const value = event.currentTarget.value;
+    fieldToBeSynced.value = value;
 }
 
 // Caesar Encryption
